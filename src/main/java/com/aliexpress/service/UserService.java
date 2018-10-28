@@ -37,6 +37,8 @@ public class UserService {
         case 1 : role = Util.encryptBASE64("主管"); break;
         case 2 : role = Util.encryptBASE64("产品编辑"); break;
         case 3 : role = Util.encryptBASE64("产品开发"); break;
+        case 4 : role = Util.encryptBASE64("销售员"); break;
+        case 5 : role = Util.encryptBASE64("仓库管理员"); break;
         default : role =Util.encryptBASE64("error");
     }
     resultDto.setResult(role);

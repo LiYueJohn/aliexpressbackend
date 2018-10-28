@@ -54,6 +54,10 @@ public interface Consts {
         /**
          * 分类列表
          */
+        public static final String GOODS_STATUS = "/goods/query/status";
+        /**
+         * 分类列表
+         */
         public static final String GOODS_DETAILS = "/goods/query/details";
         /**
          * 分类列表
@@ -87,6 +91,10 @@ public interface Consts {
          * 分类列表
          */
         public static final String ADD_IMG = "/img/upload";
+        /**
+         * 分类列表
+         */
+        public static final String ADD_IMG_MAIN = "/img/upload/main";
         /**
          * 分类列表
          */

@@ -8,43 +8,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @RestController
 public class GoodsController extends BaseController{
 
 @Autowired
-    private GoodsService GoodsService;
+    private GoodsService goodsService;
 
 
 @RequestMapping(value = Consts.Url.GOODS_LIST, method = RequestMethod.POST)
     public ResultDto queryGoodsList(@RequestBody Map<String, Object> params, HttpServletRequest request) {
-    return GoodsService.getGoodsList(params);
+    return goodsService.getGoodsList(params);
 }
+
+    @RequestMapping(value = Consts.Url.GOODS_STATUS, method = RequestMethod.GET)
+    public ResultDto queryGoodsStatus(HttpServletResponse response, HttpServletRequest request) {
+        return goodsService.queryGoodsStatus();
+    }
 
     @RequestMapping(value = Consts.Url.GOODS_BYID, method = RequestMethod.POST)
 public ResultDto getGoods(@RequestBody Map<String, Object> parms, HttpServletRequest request) {
-    return GoodsService.getGoods(parms);
+    return goodsService.getGoods(parms);
 }
 
     @RequestMapping(value = Consts.Url.GOODS_ADD, method = RequestMethod.POST)
 public ResultDto addGoods(@RequestBody Map<String, Object> parms, HttpServletRequest request) {
-    return GoodsService.addGoods(parms);
+    return goodsService.addGoods(parms);
 }
 
     @RequestMapping(value = Consts.Url.GOODS_DEL, method = RequestMethod.POST)
 public ResultDto delGoods(@RequestBody Map<String, Object> parms, HttpServletRequest request) {
-    return GoodsService.delGoods(parms);
+    return goodsService.delGoods(parms);
 }
 
     @RequestMapping(value = Consts.Url.GOODS_EDIT, method = RequestMethod.POST)
 public ResultDto editGoods(@RequestBody Map<String, Object> parms, HttpServletRequest request) {
-    return GoodsService.editGoods(parms);
+    return goodsService.editGoods(parms);
 }
 
 }

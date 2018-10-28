@@ -5,8 +5,12 @@ import com.aliexpress.config.Consts;
 import com.aliexpress.dto.ResultDto;
 import com.aliexpress.service.ImgService;
 import com.aliexpress.util.Validation;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sun.misc.BASE64Decoder;
@@ -14,7 +18,7 @@ import sun.misc.BASE64Decoder;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.io.*;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,6 +40,40 @@ public class ImgController extends BaseController {
     return imgService.getImgListByIds(parms);
 }
 
+    @RequestMapping(value = Consts.Url.ADD_IMG_MAIN, method = RequestMethod.POST)
+    public ResultDto updateMainImg(@RequestParam("file") MultipartFile multiFile, HttpServletRequest request) throws IOException {
+        if (multiFile.isEmpty()) {
+            ResultDto resultDto = getIllResult();
+            resultDto.setResult("上传文件为空");
+            return resultDto;
+        }
+        String name = multiFile.getOriginalFilename();
+        //图片尺寸不变，压缩图片文件大小outputQuality实现,参数1为最高质量
+
+        File file =  new File( ResourceUtils.getURL("./img.jpg").getPath());
+        Thumbnails.of(multiFile.getInputStream()).scale(0.2f).outputQuality(0.25f).toFile(file);
+        return imgService.uploadImg(name, getBytes(file));
+    }
+    public static byte[] getBytes( File file){
+        byte[] buffer = null;
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream(1000);
+            byte[] b = new byte[1000];
+            int n;
+            while ((n = fis.read(b)) != -1) {
+                bos.write(b, 0, n);
+            }
+            fis.close();
+            bos.close();
+            buffer = bos.toByteArray();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return buffer;
+    }
     @RequestMapping(value = Consts.Url.ADD_IMG, method = RequestMethod.POST)
 public ResultDto updateImg(@RequestParam("file") MultipartFile multiFile, HttpServletRequest request) throws IOException {
     if (multiFile.isEmpty()) {

@@ -1,7 +1,5 @@
-
 spring:
-  profiles:
-    active: dev
+  profiles: dev
   servlet:
     multipart:
       max-file-size: 10Mb
@@ -36,6 +34,7 @@ spring:
     #type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/aliexpress?useUnicode=true&characterEncoding=UTF-8
+    #url: jdbc:mysql://localhost:3306/aliexpress?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: root
 server:

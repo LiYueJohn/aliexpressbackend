@@ -43,13 +43,13 @@ CREATE TABLE `tag` (
  CREATE TABLE  `goodsbasic` (
  `id` int(8) NOT NULL AUTO_INCREMENT COMMENT 'id', 
  `name` varchar(128) NOT NULL default '' COMMENT 'name', 
- `ename` varchar(128) NOT NULL default '' COMMENT 'ename', 
+ `ename` varchar(128) NOT NULL default '' COMMENT 'ename',
  `tagids` varchar(256) default null COMMENT 'tagids', 
  `cost` varchar(32) default null COMMENT 'cost', 
  `weight` varchar(32) default null COMMENT 'weight', 
  `kind` varchar(32) default null COMMENT 'kind', 
  `supplier` varchar(256) default null COMMENT 'supplier', 
- `description` varchar(256) default null COMMENT 'description',   
+ `description` varchar(256) default null COMMENT 'description',
  `idpic` varchar(32) default null COMMENT 'idpic',   
  `createtime` varchar(32) default null COMMENT 'CreateTimeStamp',  
  `updatetime` varchar(32) default null COMMENT 'CreateTimeStamp',  
@@ -72,15 +72,22 @@ CREATE TABLE `goodsdetails` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `goodsdetails` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='goodsdetails';
- CREATE TABLE `goodsinfo` (
+
+
+
+CREATE TABLE `goodsinfo` (
   `id` int(8) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `name` varchar(128) NOT NULL DEFAULT '' COMMENT 'name',
-  `ename` varchar(128) NOT NULL DEFAULT '' COMMENT 'ename',
+  `name` text   COMMENT 'name',
+  `ename` text   COMMENT 'ename',
+  `declarezh` text   COMMENT 'name',
+  `declareen` text   COMMENT 'ename',
   `tagids` varchar(256) DEFAULT NULL COMMENT 'tagids',
   `cost` varchar(32) DEFAULT NULL COMMENT 'cost',
   `weight` varchar(32) DEFAULT NULL COMMENT 'weight',
   `kind` varchar(32) DEFAULT NULL COMMENT 'kind',
-  `supplier` varchar(256) DEFAULT NULL COMMENT 'supplier',
+  `supplier` longtext DEFAULT NULL COMMENT 'supplier',
+  `shop` longtext DEFAULT NULL COMMENT 'shop',
+  `multiproduct` longtext DEFAULT NULL COMMENT 'multiproduct:[{name:"",price:"",weight}]',
   `remarks` longtext COMMENT 'remarks',
   `description` longtext COMMENT 'description',
   `idpics` longtext COMMENT 'idpic',
@@ -89,4 +96,4 @@ CREATE TABLE `goodsdetails` (
   `status` int(11) DEFAULT NULL,
   `idpic` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10000003 DEFAULT CHARSET=utf8mb4 COMMENT='goodsinfo'
+) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8mb4 COMMENT='goodsinfo';

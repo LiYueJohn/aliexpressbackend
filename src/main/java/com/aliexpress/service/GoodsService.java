@@ -4,42 +4,36 @@ import com.aliexpress.config.Consts;
 import com.aliexpress.dto.ResultDto;
 import com.aliexpress.model.GoodsAction;
 import com.aliexpress.beans.Goods;
-import com.aliexpress.model.ImgAction;
-import com.aliexpress.util.Util;
 import com.aliexpress.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.misc.BASE64Encoder;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
 public class GoodsService {
 
 @Autowired
-    GoodsAction GoodsAction;
+    GoodsAction goodsAction;
 
     public ResultDto getGoodsList(Map<String,Object> params) {
     ResultDto resultDto = new ResultDto();
     resultDto.setCode(Consts.ErrCode.SUCCESS);
-    List list = GoodsAction.getGoodsList(params);
-    resultDto.setResult(list);
+    resultDto.setResult(goodsAction.getGoodsList(params));
     return resultDto;
 }
 
 public ResultDto getGoods(Map<String, Object> parms) {
     ResultDto resultDto = new ResultDto();
     resultDto.setCode(Consts.ErrCode.SUCCESS);
-    Goods Goods = GoodsAction.getGoods(parms);
+    Goods Goods = goodsAction.getGoods(parms);
     resultDto.setResult(Goods);
     return resultDto;
 }
 public ResultDto addGoods(Map<String, Object> parms) {
     ResultDto resultDto = new ResultDto();
     resultDto.setCode(Consts.ErrCode.SUCCESS);
-    Boolean aBoolean = GoodsAction.addGoods(parms);
+    Boolean aBoolean = goodsAction.addGoods(parms);
     resultDto.setResult(aBoolean);
     return resultDto;
 }
@@ -55,7 +49,7 @@ public ResultDto delGoods(Map<String, Object> parms) {
         return resultDto;
     }
     resultDto.setCode(Consts.ErrCode.SUCCESS);
-    Boolean aBoolean = GoodsAction.delGoods(goodsIds,picIds);
+    Boolean aBoolean = goodsAction.delGoods(goodsIds,picIds);
     resultDto.setResult(aBoolean);
     return resultDto;
 }
@@ -63,9 +57,15 @@ public ResultDto delGoods(Map<String, Object> parms) {
 public ResultDto editGoods(Map<String, Object> parms) {
     ResultDto resultDto = new ResultDto();
     resultDto.setCode(Consts.ErrCode.SUCCESS);
-    Boolean aBoolean = GoodsAction.editGoods(parms);
+    Boolean aBoolean = goodsAction.editGoods(parms);
     resultDto.setResult(aBoolean);
     return resultDto;
 }
 
+    public ResultDto queryGoodsStatus() {
+        ResultDto resultDto = new ResultDto();
+        resultDto.setCode(Consts.ErrCode.SUCCESS);
+        resultDto.setResult(goodsAction.queryGoodsStatus());
+        return resultDto;
+    }
 }

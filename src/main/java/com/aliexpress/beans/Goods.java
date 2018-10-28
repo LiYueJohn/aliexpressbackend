@@ -2,7 +2,7 @@ package com.aliexpress.beans;
 
 public class Goods {
 
-    private String id;
+    private int id;
     private String name;
     private String ename;
     private String tagids;
@@ -16,7 +16,35 @@ public class Goods {
     private String description;
     private String createtime;
     private String upatetime;
-    private int status;//1 正常 2 停产 3 请货 4 待编辑
+    private int status;//1 正常 2 停产 3 清货 4 待编辑 5新品 6爆款
+    private String declarezh;
+    private String declareen;
+    private String shop;
+    private String multiproduct;
+
+    public String getDeclarezh() {
+        return declarezh;
+    }
+
+    public void setDeclarezh(String declarezh) {
+        this.declarezh = declarezh;
+    }
+
+    public String getDeclareen() {
+        return declareen;
+    }
+
+    public void setDeclareen(String declareen) {
+        this.declareen = declareen;
+    }
+
+    public String getShop() {
+        return shop;
+    }
+
+    public void setShop(String shop) {
+        this.shop = shop;
+    }
 
     public String getIdpic() {
         return idpic;
@@ -34,11 +62,11 @@ public class Goods {
         this.status = status;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -136,5 +164,13 @@ public class Goods {
 
     public void setUpatetime(String upatetime) {
         this.upatetime = upatetime;
+    }
+
+    public String getMultiproduct() {
+        return multiproduct;
+    }
+
+    public void setMultiproduct(String multiproduct) {
+        this.multiproduct = multiproduct;
     }
 }
